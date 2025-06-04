@@ -50,3 +50,25 @@ document.getElementById('calcForm').addEventListener('submit', function(e) {
     const body = Object.entries(details).map(([k, v]) => `${k}: ${v}`).join('\n');
     window.location.href = `mailto:sales@fotodesign.co.za?subject=New Surface Area Job&body=${encodeURIComponent(body)}`;
 });
+
+
+// Store all calculated areas
+let totalArea = 0;
+let entries = [];
+
+// Function to add new shape entry
+function addShapeEntry(shape, dimensions, quantity, area) {
+    const entryList = document.getElementById('entryList');
+    const entry = document.createElement('li');
+    entry.textContent = `${shape} (${quantity}x) = ${area.toFixed(2)} m²`;
+    entryList.appendChild(entry);
+
+    entries.push(area);
+    totalArea += area;
+    document.getElementById('totalM2').textContent = totalArea.toFixed(2) + ' m²';
+}
+
+// Example: Hook this into your existing shape calculation logic
+// After you calculate `area` for a shape, call:
+// addShapeEntry('Rectangle', '100x200', 2, 0.4);
+
